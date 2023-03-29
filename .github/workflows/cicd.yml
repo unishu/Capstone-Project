@@ -2,7 +2,7 @@ name: marlanda-CI/CD
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 #frontend
 jobs:
