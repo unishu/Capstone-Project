@@ -8,7 +8,7 @@ COPY . .
 RUN npm install
 RUN npm install serve --location=global
 RUN npm ci
-RUN npm run build
+
 
 
 COPY . .
