@@ -47,7 +47,7 @@ jobs:
         file: ./frontend/Dockerfile
         push: true
 #Change this to whatever your repository is called
-        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/petbook-app-demo:frontend
+        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/petbook:frontendv2
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
 
@@ -93,7 +93,7 @@ jobs:
         file: ./backend/Dockerfile
         push: true
 #Change this to whatever your repository is called
-        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/petbook-app-demo:backend
+        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/petbook:backendv2
 
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
