@@ -14,7 +14,7 @@ import {Register} from './components/screens/registerScreen/Register'
 import Home from "./components/screens/Home"
 import Dashboard from "./components/screens/Dashboard"
 //import { Router } from 'express';
-import {Auth} from "./components/Auth"
+
 import {NewPet} from "./components/pets/NewPet"
 import PrivateComponent from './components/PrivateComponent';
 import MyPets from './components/pets/MyPets';

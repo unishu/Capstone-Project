@@ -18,7 +18,6 @@ const UploadFiles = () => {
     const onChange = (e) => {
         setfile(e.target.files);
     }
-  
         return (
             <form onSubmit={(e)=>onFormSubmit(e)}>
                 <h1>File Upload</h1>
@@ -27,6 +26,6 @@ const UploadFiles = () => {
             </form>
         )
     
-  }
+  };
 
 export default UploadFiles

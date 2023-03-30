@@ -11,8 +11,6 @@ RUN npm ci
 RUN npm run build
 
 
-COPY . .
-
 EXPOSE 3000
 
 # Use script specified in package,json
