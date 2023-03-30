@@ -2,7 +2,7 @@ version: "4"
 services:
 
   mongo:
-    container_name: mongodb_container
+    container_name: mongodb_con
     image: mongo:latest
     ports:
       - 27017:27017
@@ -15,10 +15,9 @@ services:
     depends_on:
       - mongo
     build: ./backend
-    container_name: backend_c
+    container_name: backend_con
     restart: unless-stopped
     ports: 
-      - "8080:8080"
       - '5000:5000'
     expose:
       - 5000
@@ -36,7 +35,7 @@ services:
       - backend
       - mongo
     build: ./frontend
-    container_name: frontend_c
+    container_name: frontend_con
     restart: unless-stopped
     ports:
       - "3000:3000"

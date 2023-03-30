@@ -215,19 +215,13 @@ const UpdatePet = () => {
       </Row>
 
 
-      
 
-    
-      <Form.Group className="mb-3" id="formGridCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-
-      <div className="text-end">
+      <div className="text-end mt-4">
         {loading && <Loading size={50} />}
       <Button 
         variant="primary" 
         type="submit" 
-        className="register-btn col-sm-3" 
+        className="register-btn col-sm-3 " 
         onClick={updatePet}
       >
         Update
@@ -235,7 +229,7 @@ const UpdatePet = () => {
       <Button 
         variant="danger" 
         type="submit" 
-        className="register-btn col-sm-3"
+        className="register-btn col-sm-3 ms-3"
         href="/mypets" 
         //onClick={updatePet}
       >

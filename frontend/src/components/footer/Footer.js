@@ -8,22 +8,20 @@ export default function Footer() {
     <footer className='text-center text-white bg-light' >
       <Container className='pt-4'>
         <section className='mb-4'>
-
             <a href="#!" className='m-4' ><FaFacebook/></a>
             <a href="#!" className='m-4'><FaTwitter/></a>
             <a href="#!" className='m-4'><FaInstagram/></a>
-
         </section>
       </Container>
 
       <div className='text-center text-dark p-3 small' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
-      {'Copyright © '}
+        {'Copyright © '}
         <a className='text-dark text-decoration-none ' href=''>{' '} {' '}
-          Marlanda Mar {' '}
-      {new Date().getFullYear()}
-      {'.'}
+        Marlanda Mar {' '}
+        {new Date().getFullYear()}
+        {'.'}
         </a>
       </div>
     </footer>
   );
-}
+};

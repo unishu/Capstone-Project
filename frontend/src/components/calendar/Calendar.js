@@ -38,34 +38,31 @@ async function  handleDateSet(data) {
 
     return (
         <>
-        <div className="min-vh-100 d-flex p-0" >
-        <Sidebar />
-        <Container className="">
-    
-        <Container className="cal-container w-75 h-50 mt-5 p-0">
-        <Button className="cal-btn" onClick={()=> setModalOpen(true)}>Add Event</Button>
+            <div className="min-vh-100 d-flex p-0" >
+                <Container className="  mt-2 mb-3">
+                    <div className="bg-white">
+                    <Container className="cal-container w-75 h-25 mt-5 p-0 ">
+                        <Button className="cal-btn mt-3 mb-4" onClick={()=> setModalOpen(true)}>Add Event</Button>
 
-        <div style= {{position: "relative", zIndex: 0}} >
-            <FullCalendar
-            ref={calendarRef}
-            events={events}
-            plugins = {[dayGridPlugin]}
-            initialView='dayGridMonth'
-            eventAdd={(event) => handleEventAdd(event)}
-            datesSet = {(date) => handleDateSet(date)}   
-            />
-        </div>
-        
-
-        <AddEventModal isOpen={modalOpen} 
-        onClose={() => setModalOpen(false)} 
-        onEventAdded={event => onEventAdded(event)} />
-        
-        </Container> <br/><br/>
-        
-       
-        </Container>
-        
-        </div><Footer /> </>
+                        <div style= {{position: "relative", zIndex: 0}} >
+                            <FullCalendar
+                            ref={calendarRef}
+                            events={events}
+                            plugins = {[dayGridPlugin]}
+                            initialView='dayGridMonth'
+                            eventAdd={(event) => handleEventAdd(event)}
+                            datesSet = {(date) => handleDateSet(date)}   
+                            />
+                        </div>
+                        <AddEventModal isOpen={modalOpen} 
+                        onClose={() => setModalOpen(false)} 
+                        onEventAdded={event => onEventAdded(event)} />
+                    </Container> <br/><br/>
+                    </div>
+                </Container>
+                
+            </div>
+            <Footer /> 
+        </>
     )
 }

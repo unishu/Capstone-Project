@@ -12,3 +12,4 @@ EXPOSE 5000
 
 # Use script specified in package,json
 CMD ["node", "server"]
+

@@ -57,11 +57,11 @@ const Home = () => {
           <Card>
             <Card.Img variant="top" src={cat} />
             <Card.Body>
-              <Card.Title>Records</Card.Title>
+              <Card.Title>Pet Profiles</Card.Title>
               <Card.Text>
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
+              PetBook is designed so that each pet (or other animal) has its own unique personalized profile.  
+               You can include fun details such as your pet’s breed, talents, favorite foods & toys, likes and dislikes, 
+               and stuff you’d like to share about their human family members.
               </Card.Text>
             </Card.Body>
           </Card>
@@ -71,11 +71,11 @@ const Home = () => {
           <Card>
             <Card.Img variant="top" src={bird} />
             <Card.Body>
-              <Card.Title>Knowledge</Card.Title>
+              <Card.Title>Records</Card.Title>
               <Card.Text>
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
+              Records, the place you can store everything about your pets health, Logs, Notes and Bills making 
+              access more convenient.Use our templates to log any type of record, and keep everything in separate files, 
+              organised and easy to find. Creating your own templates, is even an option.
               </Card.Text>
             </Card.Body>
           </Card>
@@ -84,11 +84,11 @@ const Home = () => {
           <Card>
             <Card.Img variant="top" src={lizard} />
             <Card.Body>
-              <Card.Title>Card title</Card.Title>
+              <Card.Title>Pet Profiles</Card.Title>
               <Card.Text>
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
+               PetBook is designed so that each pet (or other animal) has its own unique personalized profile.  
+               You can include fun details such as your pet’s breed, talents, favorite foods & toys, likes and dislikes, 
+               and stuff you’d like to share about their human family members.
               </Card.Text>
             </Card.Body>
           </Card>

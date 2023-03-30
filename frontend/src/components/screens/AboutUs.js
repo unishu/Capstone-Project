@@ -15,7 +15,7 @@ const AboutUs = () => {
          
             <div> 
               <h1 className='font-link mb-4' style={{ fontSize: "4rem" }}>A little about PetBook</h1>
-                <p>Welcome to PETBOOK!</p>
+                <p>A Place For You + Your Best Friend</p>
 
                 <p>  We understand that your pets are an important part of your family, which is why 
                   we created an easy-to-use platform to help you manage their health and schedule.<br/><br/>
