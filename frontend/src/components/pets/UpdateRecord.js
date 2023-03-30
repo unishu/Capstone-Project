@@ -70,7 +70,7 @@ const getRecords = async (e) => {
  setAllergies(result.healthConcerns);
  setMedication(result.healthConcerns);
  setExistingConditions(result.healthConcerns);
- setHistory(result.history);
+ setHistory(result.healthConcerns);
  setVaccinations(result.vaccinations);
  setRecordImage(result.recordImage);
 
@@ -179,51 +179,42 @@ try {
 
   return (
     <> 
+      <div className=" min-vh-100 d-flex m-0 p-0">
+        <Sidebar />
 
-
-    
-
-    <div className=" min-vh-100 d-flex m-0 p-0">
-    <Sidebar />
-
-    
- 
-   <div className=" min-vh-100 d-flex align-items-center justify-content-center">
-   <div className=''>
+        <div className=" min-vh-100 d-flex align-items-center justify-content-center">
+          <div className=''>
             <label for="formFileMultiple" className="form-label ">Upload Documents</label><br/>
-            <input 
-            className='upload ' 
-            type="file"
-            id="formFileMultiple" 
-            multiple
-            accept ='application/pdf, image/png, image/jpeg'
-            onChange= {(e) => upload(e.target.files[0])}/>
+              <input 
+              className='upload ' 
+              type="file"
+              id="formFileMultiple" 
+              multiple
+              accept ='application/pdf, image/png, image/jpeg'
+              onChange= {(e) => upload(e.target.files[0])}/>
            
 
-           <label for="formFileMultiple" className="form-label ">Upload Documents</label><br/>
-            <input 
-            className='upload ' 
-            type="file"
-            id="formFileMultiple" 
-            multiple
-            accept ='application/pdf, image/png, image/jpeg'
-            onChange= {(e) => upload(e.target.files[0])}/>
+            <label for="formFileMultiple" className="form-label ">Upload Documents</label><br/>
+              <input 
+              className='upload ' 
+              type="file"
+              id="formFileMultiple" 
+              multiple
+              accept ='application/pdf, image/png, image/jpeg'
+              onChange= {(e) => upload(e.target.files[0])}/>
 
-<label for="formFileMultiple" className="form-label ">Upload Documents</label><br/>
-            <input 
-            className='upload ' 
-            type="file"
-            id="formFileMultiple" 
-            multiple
-            accept ='application/pdf, image/png, image/jpeg'
-            onChange= {(e) => upload(e.target.files[0])}/>
+            <label for="formFileMultiple" className="form-label ">Upload Documents</label><br/>
+              <input 
+              className='upload ' 
+              type="file"
+              id="formFileMultiple" 
+              multiple
+              accept ='application/pdf, image/png, image/jpeg'
+              onChange= {(e) => upload(e.target.files[0])}/>
           </div>
-    <Form className="" //onSubmit={handleSubmit}
-    >
-       
-
-
-       <Row className="mb-3 mt-5">
+    
+          <Form className="" >
+            <Row className="mb-3 mt-5">
         <Form.Group as={Col} controlId="formGridBreed">
           <h5>Pet </h5>
           <Form.Label>Name</Form.Label>

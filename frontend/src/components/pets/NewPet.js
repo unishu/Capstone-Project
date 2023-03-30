@@ -127,124 +127,114 @@ try {
           return setPicMessage("Please Select an Image");
         }
       };
-        
-      
-                
+
     
   return (
     <> 
 
-    <div className=" min-vh-100 d-flex m-0 p-0">
-    <Sidebar />
+      <div className=" min-vh-100 d-flex m-0 p-0">
+        <Sidebar />
  
-   <div className="container min-vh-100 d-flex align-items-center justify-content-center">
-    <Form className="" //onSubmit={handleSubmit}
-    >
-        <h2 className="mb-5">Register new pet</h2>
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridEmail">
-          <Form.Label>Name</Form.Label>
-          <Form.Control 
-          type="text"
-          className="form-control mt-1"
-          //className={`${}`}
-         
-          name="name"
-          value={name}
-          placeholder= "e.g Jane Doe "
-          onChange={(e) => setName(e.target.value)}
-          />
-        </Form.Group>
-
-        <Form.Group as={Col} controlId="formGridPassword">
-          <Form.Label>Upload a photo</Form.Label>
-          
-          <input type="file" id="myFile" classname="petphoto" onChange={(e) => postPic(e.target.files[0])}></input>
-        </Form.Group>
-      </Row>
-
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridBreed">
-          <Form.Label>Species</Form.Label>
-          <Form.Control 
-          type="text" 
-          placeholder="Pet's breed"
-          className="inputBox"
-          value= {species}  
-          onChange={(e) => {setSpecies(e.target.value)}} />
-        </Form.Group>
-
-        <Form.Group as={Col} controlId="formGridBreed">
-          <Form.Label>Breed</Form.Label>
-          <Form.Control 
-          type="text" 
-          placeholder="Pet's breed"
-          className="inputBox"
-          value= {breed}  
-          onChange={(e) => {setBreed(e.target.value)}} />
-        </Form.Group>
-
+      <div className="container min-vh-100 d-flex align-items-center justify-content-center">
+        <Form className="" //onSubmit={handleSubmit}
+        >
+          <h2 className="mb-5">Register new pet</h2>
         
-      </Row>
+          <Row className="mb-3">
+            <Form.Group as={Col} controlId="formGridEmail">
+              <Form.Label>Name</Form.Label>
+                <Form.Control 
+                type="text"
+                className="form-control mt-1" 
+                name="name"
+                value={name}
+                placeholder= "e.g Jane Doe "
+                onChange={(e) => setName(e.target.value)}
+              />
+           </Form.Group>
 
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGridEmail">
-          <Form.Label>Sex</Form.Label>
-          <Form.Control 
-          type="text" 
-          placeholder="Pet's sex"
-          className="inputBox"
-          value= {sex}  
-          onChange={(e) => {setSex(e.target.value)}} />
-        </Form.Group>
+            <Form.Group as={Col} controlId="formGridPassword">
+              <Form.Label>Upload a photo</Form.Label>
+                <input type="file" id="myFile" classname="petphoto" onChange={(e) => postPic(e.target.files[0])}></input>
+            </Form.Group>
+          </Row>
 
-        <Form.Group as={Col} controlId="formGridBreed">
-          <Form.Label>Birthday</Form.Label>
-          <Form.Control 
-          type="text" 
-          placeholder="Date of birth"
-          className="inputBox"
-          value= {birthday}  
-          onChange={(e) => {setBirthday(e.target.value)}} />
-        </Form.Group>
-        
-        </Row>
+          <Row className="mb-3">
+            <Form.Group as={Col} controlId="formGridBreed">
+              <Form.Label>Species</Form.Label>
+                <Form.Control 
+                type="text" 
+                placeholder="Pet's breed"
+                className="inputBox"
+                value= {species}  
+                onChange={(e) => {setSpecies(e.target.value)}} />
+            </Form.Group>
 
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGridEmail">
-          <Form.Label>Weight</Form.Label>
-          <Form.Control 
-          type="text" 
-          placeholder="Pet's weight" 
-          className="inputBox"
-          value= {weight}  
-          onChange={(e) => {setWeight(e.target.value)}} />
-        </Form.Group>
-        <Form.Group as={Col} controlId="formGridBreed">
-          <Form.Label>Registration ID</Form.Label>
-          <Form.Control 
-          type="text" 
-          placeholder="Registration ID"
-          className="inputBox"
-          value= {registrationId}  
-          onChange={(e) => {setRegistrationId(e.target.value)}} />
-        </Form.Group>
-        
-        </Row>
+            <Form.Group as={Col} controlId="formGridBreed">
+              <Form.Label>Breed</Form.Label>
+                <Form.Control 
+                type="text" 
+                placeholder="Pet's breed"
+                className="inputBox"
+                value= {breed}  
+                onChange={(e) => {setBreed(e.target.value)}} />
+            </Form.Group>
+          </Row>
+
+          <Row className="mb-3">
+            <Form.Group as={Col} controlId="formGridEmail">
+              <Form.Label>Sex</Form.Label>
+                <Form.Control 
+                type="text" 
+                placeholder="Pet's sex"
+                className="inputBox"
+                value= {sex}  
+                onChange={(e) => {setSex(e.target.value)}} />
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="formGridBreed">
+                <Form.Label>Birthday</Form.Label>
+                  <Form.Control 
+                  type="text" 
+                  placeholder="Date of birth"
+                  className="inputBox"
+                  value= {birthday}  
+                  onChange={(e) => {setBirthday(e.target.value)}} />
+              </Form.Group>
+          </Row>
+
+          <Row className="mb-3">
+            <Form.Group as={Col} controlId="formGridEmail">
+              <Form.Label>Weight</Form.Label>
+                <Form.Control 
+              type="text" 
+              placeholder="Pet's weight" 
+              className="inputBox"
+              value= {weight}  
+              onChange={(e) => {setWeight(e.target.value)}} />
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="formGridBreed">
+              <Form.Label>Registration ID</Form.Label>
+                <Form.Control 
+                type="text" 
+                placeholder="Registration ID"
+                className="inputBox"
+                value= {registrationId}  
+                onChange={(e) => {setRegistrationId(e.target.value)}} />
+            </Form.Group>
+          </Row>
       
-
-      <div className="text-end">
-      <Button variant="primary" type="submit" className="register-btn col-sm-3" onClick={addPet}>
-        Register
-      </Button>
-      </div>
-    </Form>
+          <div className="text-end">
+            <Button variant="primary" type="submit" className="register-btn col-sm-3" onClick={addPet}>
+            Register
+            </Button>
+          </div>
+        </Form>
     </div>
     </div>
     <br/>
-    
-    
-    </>
+  </>
   );
   }
 
