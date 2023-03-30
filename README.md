@@ -1,5 +1,5 @@
 # PetBook
-This capstone project is a simple pet organisation and schedule platform designed with user accesibility, affordability and stress free management of their furry friends in mind. The application utilises the MERN development framework (MongoDB, Express.js, React.js and Node.js) <br/><br/>
+This capstone project is a simple pet organisation and schedule platform designed with user accesibility, affordability and stress free management of their furry friends in mind. The application was built utilising the MERN development framework (MongoDB, Express.js, React.js and Node.js). <br/><br/>
 
 
 # Installation <br/>
@@ -27,8 +27,6 @@ Once both backend and frontend have launched, open browser and open http://local
 - Start Docker
 - once Docker is running, run the docker-compose up --build command
 - once docker images have built and containers start up, open your browser and go to http://localhost:port-number
-
-
 
 
 If everything is up and running, homepage withh display. If it fails to display, it was not successful.
