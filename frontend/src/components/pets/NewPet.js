@@ -6,10 +6,11 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Sidebar from "../Sidebar";
+import Loading from "../Loading";
+import ErrorMessage from "../ErrorMessage";
 import axios from "axios";
 
 export const NewPet = () => {
-
 
     const [name, setName] = useState(' ');
     const [pic, setPic] = useState("https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg")
@@ -19,26 +20,13 @@ export const NewPet = () => {
     const [sex, setSex] = useState('');
     const [weight, setWeight] = useState('');
     const [registrationId, setRegistrationId] = useState('');
-    const [picMessage, setPicMessage] = useState();
- 
-
+    const [picMessage, setPicMessage] = useState()
+    const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false);
 
-/* const handleSubmit =   (e) => {
-      e.preventDefault();
-      //console.log(name, breed, gender, weight, address, city, postcode);
-    }*/
-  const navigate =useNavigate();
+    const navigate =useNavigate();
 
-  /*useEffect(() => {
-    const petInfo = localStorage.getItem("pet");
-    if(petInfo) {
-       //navigate("/dashboard") 
-       console.log("Success!")
-    }
-    
-},[]) */
 
     const addPet = async (e)=> {
       e.preventDefault();
@@ -49,36 +37,6 @@ export const NewPet = () => {
       console.warn({userId})
       console.warn({userAddress})
 
-    
-
-
-  /*    try { 
-        const config = {
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                //"Content-type": "applications/json",
-                
-            }
-        };
-        
-
-        //setLoading(true);
-        let { data } = await axios.post("http://localhost:5000/api/pets/register", {
-          name, breed, birthday, gender, registrationId, userId 
-        }, config
-        );
-        
-console.log(data)
-        
-        localStorage.setItem("user", JSON.stringify(data));
-        //navigate('/dashboard');
-        //setLoading(false);
-    } catch (error) {
-        setError(error?.response?.data?.message);
-        //setLoading(false)
-    }
-};
-*/
 try {
       let result = await fetch("http://localhost:5000/api/pets/register", {
         method: "POST",
@@ -89,18 +47,19 @@ try {
         }
       });
       setLoading(true)
+      setSuccess ("Added new pet")
       result = await result.json();
       console.log(result);
       localStorage.setItem("pet", JSON.stringify(result))
-      alert("Pet has been added!")
+  
+      alert("Pet has been added!")    
+      setLoading(false)
       navigate("/mypets")
    
       
       } catch (error) {
         setError(error.response.data.message);
-     
         setLoading(false)
-        
       }};
 
       const postPic = (pics) => {
@@ -131,27 +90,32 @@ try {
     
   return (
     <> 
-
       <div className=" min-vh-100 d-flex m-0 p-0">
         <Sidebar />
  
-      <div className="container min-vh-100 d-flex align-items-center justify-content-center">
-        <Form className="" //onSubmit={handleSubmit}
-        >
-          <h2 className="mb-5">Register new pet</h2>
-        
-          <Row className="mb-3">
-            <Form.Group as={Col} controlId="formGridEmail">
-              <Form.Label>Name</Form.Label>
-                <Form.Control 
-                type="text"
-                className="form-control mt-1" 
-                name="name"
-                value={name}
-                placeholder= "e.g Jane Doe "
-                onChange={(e) => setName(e.target.value)}
-              />
-           </Form.Group>
+        <div className="container min-vh-100 d-flex align-items-center justify-content-center">
+      
+          <Form className="" //onSubmit={handleSubmit}
+          >
+            <h2 className="mb-5">Register new pet</h2>
+              {loading && <Loading />}
+              {success && (
+                <ErrorMessage variant="success">
+                  Updated Successfully
+                </ErrorMessage>
+              )}
+            <Row className="mb-3">
+              <Form.Group as={Col} controlId="formGridEmail">
+                <Form.Label>Name</Form.Label>
+                  <Form.Control 
+                  type="text"
+                  className="form-control mt-1" 
+                  name="name"
+                  value={name}
+                  placeholder= "e.g Jane Doe "
+                  onChange={(e) => setName(e.target.value)}
+                />
+            </Form.Group>
 
             <Form.Group as={Col} controlId="formGridPassword">
               <Form.Label>Upload a photo</Form.Label>

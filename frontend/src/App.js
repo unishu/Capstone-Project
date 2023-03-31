@@ -21,6 +21,7 @@ import MyPets from './components/pets/MyPets';
 import UpdatePet from './components/pets/UpdatePet';
 import PetRecord from './components/pets/PetRecord';
 import PetRecord2 from './components/pets/PetRecord2';
+import PetRecords from './components/pets/PetRecords'
 import { NewRecord } from './components/pets/NewRecord';
 import {UpdateRecord} from './components/pets/UpdateRecord'
 import ProfileScreen from './components/screens/profileScreen/ProfileScreen';
@@ -65,6 +66,7 @@ function App() {
             <Route path='/update/:petid' element={<UpdatePet />} />  
             <Route path='/newpet' element={<NewPet />} /> 
             <Route path='/petrecord/:recordId' element={<PetRecord />} /> 
+            <Route path='/petrecords' element={<PetRecords />} /> 
             <Route path='/petrecord/update/:recordId' element={<UpdateRecord />} /> 
             <Route path='/petrecord/new-record/:petid' element={<NewRecord />} /> 
             

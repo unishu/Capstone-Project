@@ -23,9 +23,7 @@ export const Register = () => {
     const [showPassword, setShowPassword] = useState(''); 
     const [success, setSuccess] = useState('')
 
-     /*const collectInfo = () => {
-        console.log(username, name, email, password);
-    } */
+   
     const navigate = useNavigate();
 
     useEffect(() => {

@@ -12,7 +12,7 @@ export const Header = () => {
         <h1 style={{color: 'black'}}>PetBook </h1>
           <p>One Safe Place for all your Pets. </p>
           <p>
-            <a href="/login">
+            <a href="/about-us">
               <Button bsStyle="primary">Learn more</Button>
             </a>
           </p>

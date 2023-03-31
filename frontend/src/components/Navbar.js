@@ -39,9 +39,6 @@ const Navbar = () => {
                                     <a className="nav-link" href="/about-us">About Us</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/about">Our Services</a>
-                                </li>
-                                <li className="nav-item">
                                     <a className="nav-link active" aria-current="page" href="/mypets ">Dashboard</a>
                                 </li>
                                 <li><a  href="/register" className="nav-link" onClick={logout}>Logout
@@ -52,9 +49,6 @@ const Navbar = () => {
                             
                                 <li className="nav-item">
                                     <a className="nav-link" href="/about-us">About Us</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="/about">Our Services</a>
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link" href="/about">Contact</a>

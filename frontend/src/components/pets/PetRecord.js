@@ -48,8 +48,9 @@ const PetRecord = () => {
 
    const deleteRecord = async (id) => {
     console.log(id)
-    if (window.confirm("Are you sure?")) {     
-    }
+    if (!window.confirm("Are you sure?")) {  
+        return false;  
+    } else{
 
     let result = await fetch(`http://localhost:5000/api/petrecords/${id}`, {
         method: "DELETE",
@@ -59,9 +60,9 @@ const PetRecord = () => {
     if (result){
         alert("Record deleted");
         localStorage.removeItem('record');
-       
     //navigate("/")
         fetchRecords()
+    }
     }
    
 };
@@ -70,27 +71,25 @@ const searchHandler = async(event) => {
     let key = event.target.value;
     console.log({key: key})
     if (key){
-
     let result = await fetch(`http://localhost:5000/api/petrecords/search/${key}`);
     result = await result.json()
     if (result) {
         setRecords(result)
-       
     }
 }else{
     fetchRecords();
-}
-}
-
+}};
 
   return (
   <>
     <Container className='min-vh-100'> 
-        <div className='mt-4 '>
-            <Button variant = "info" className='mb-2' href= '/mypets'>Back to Dashboard</Button><br/>
-            <input type="" className='search-record-box rounded w-20 p-1 mb-2 mt-5' placeholder='Search Record' 
-            onChange={searchHandler}/><br/><br/>
-        <div>
+        <div className=' m-auto w-50 mt-5'>
+            <Button variant = "info" className='mb-2' href= '/mypets'>
+                Back to Dashboard
+            </Button><br/>
+                <input type="" className='search-record-box rounded w-20 p-1 mb-2 mt-5' placeholder='Search Record' 
+                onChange={searchHandler}/><br/><br/>
+        <div className=' mb-5'>
 
     
         {
@@ -99,73 +98,72 @@ const searchHandler = async(event) => {
                     <Accordion.Item eventKey="0">
                         <Card>
                             <Card.Header style={{display:"flex"}}>
-                                <Accordion.Header><span >{record.petName}</span></Accordion.Header>
-            <div> {' '}
-                <Button variant = "success" className='ms-4'> Schedule</Button> {' '}
-                <Button href={`update/${record._id}`} //or {"/update/"+pet.id}
-                >
-                    Update
-                </Button>{' '}
-                <Button 
-                variant="danger"
-                onClick= {() => deleteRecord(record._id)}
-                >
-                    Delete
-                </Button>
-                </div>
-                </Card.Header>
-                <Accordion.Body>
-                <Card.Body>
-                    <h4>
-                        <Badge bg= "info">
-                            Record - {record._id}
-                        </Badge>
-                    </h4>
-
-                
-                < blockquote className="blockquoite mb-0">
-                    
-                    <div>
-                      
-                        <h4>Vet</h4>
-                        {record.vet.map ((c, i) =>
-                        <div>
-                        <h6></h6>{c.name} 
-                        <h6></h6> {c.contact}
-                        </div>
-                        )} <br/>
+                                <Accordion.Header>
+                                    <span >{record.petName}</span>
+                                </Accordion.Header>
+                            <div> {' '}
+                                <Button 
+                                href={`update/${record._id}`} //or {"/update/"+pet.id}
+                                style={{marginLeft: "1em"}}
+                                >
+                                    Update 
+                                </Button>{' '}
+                                <Button 
+                                variant="danger"
+                                onClick= {() => deleteRecord(record._id)}
+                                style={{marginLeft: "auto"}}
+                                >
+                                    Delete 
+                                </Button>
+                            </div>
+                            </Card.Header>
+                            <Accordion.Body>
+                                <Card.Body>
+                                    <h4>
+                                        <Badge bg= "info" style={{marginBottom: "1em"}}>
+                                        Record - {record._id}
+                                        </Badge>
+                                    </h4>
+                                    <Row blockquote className="blockquoute mb-0">
+                                    <div>
+                                        <h4>Vet</h4>
+                                            {record.vet.map ((c, i) =>
+                                        <div>
+                                            <h6></h6>{c.name} 
+                                            <h6></h6> {c.contact}
+                                        </div>
+                                    )} <hr/>
                      
-                        <h4>Health Concerns</h4>
-                        {record.healthConcerns.map ((c, i) =>
-                        <div>
-                        <h6>Allergies:</h6>{c.allergies}
-                        <h6>Medication:</h6> {c.medication}
-                        <h6>Existing Conditions:</h6> {c.exisitingConditions} 
-                        <h6>History:</h6> {c.history}
-                        </div>
-                        )} <br/>
+                                         <h4>Health Concerns</h4>
+                                            {record.healthConcerns.map ((c, i) =>
+                                        <div>
+                                            <h6>Allergies:</h6>{c.allergies}
+                                            <h6>Medication:</h6> {c.medication}
+                                            <h6>Existing Conditions:</h6> {c.exisitingConditions} 
+                                            <h6>History:</h6> {c.history}
+                                        </div>
+                                    )} <hr/>
                     
-                        <h4>Vaccinations:</h4> {record.vaccinations}
-                        <br/><br/>
-                        <h4>Records:</h4> <a href={record.recordImage} className="btn btn-primary stretched-link mb-4"> <FaFile/></a>
-                    </div>
-                    
-                    <footer className='blockquote-footer'> Created On - {new Date().toLocaleDateString('en-nz', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</footer>
-                </blockquote>
-                </Card.Body>
-                </Accordion.Body>
-            </Card>
-            </Accordion.Item>
-            </Accordion>
+                                            <h4>Vaccinations:</h4> {record.vaccinations}
+                                            <br/><hr/>
+                                            <h4>Records:</h4> <a href={record.recordImage} className="btn btn-primary stretched-link mb-4"> <FaFile/></a>
+                                        </div><br/>
+                                    <footer className='blockquote-footer'> Created On - {new Date().toLocaleDateString('en-nz', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}</footer>
+                                </Row>
+                                </Card.Body>
+                            </Accordion.Body>
+                        </Card>
+                    </Accordion.Item>
+                   <br/>
+                </Accordion>
             ))
             :<h1>No Record Found</h1>
-
             }
-</div>
-    </div>
+        </div>
+        </div>
     </Container>
     <Footer />
-    </>
+</>
   )
 }
 

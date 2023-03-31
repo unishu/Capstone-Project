@@ -5,7 +5,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import ErrorMessage from "../ErrorMessage";
+import Loading from "../Loading";
 import Sidebar from "../Sidebar";
+import Footer from "../footer/Footer";
 import axios from "axios";
 
 export const NewRecord = () => {
@@ -27,20 +30,14 @@ export const NewRecord = () => {
     const [loading, setLoading] = useState(false);
     const [picMessage, setPicMessage] = useState();
     const [recordImage, setRecordImage] = useState("https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg");
- 
-
     const [error, setError] = useState(false)
-
+    const [message, setMessage] = useState(null);
+    const [success, setSuccess] = useState(false);
     const recordId = localStorage.getItem("record")
+    const navigate =useNavigate();
+    const params = useParams();
 
-
-/* const handleSubmit =   (e) => {
-      e.preventDefault();
-      //console.log(name, breed, gender, weight, address, city, postcode);
-    }*/
-  const navigate =useNavigate();
-const params = useParams();
-
+  
 useEffect(() => {
   getDetails();
 }, [])
@@ -55,18 +52,14 @@ const getDetails = async (e) => {
   console.warn(result); 
 
 }
-
-
-
     const addRecord = async (e)=> {
       e.preventDefault();
       const userId= JSON.parse(localStorage.getItem('user'))._id
       const petId= JSON.parse(localStorage.getItem('pet'))._id
       const token = JSON.parse(localStorage.getItem('user')).token;
       
-     
 try {
-      let result = await fetch(`http://localhost:5000/api/petrecords/add/${params.petId}`, {
+      let result = await fetch(`http://localhost:5000/api/petrecords/add/${params.petid}`, {
         method: "POST",
         body: JSON.stringify({ petName, vet: [{name, contact}], healthConcerns:[{allergies, medication, exisitingConditions, history }], vaccinations, userId, petId, recordImage}),
         headers: {
@@ -79,17 +72,13 @@ try {
       localStorage.setItem("record", JSON.stringify(result))
       localStorage.setItem("pet", JSON.stringify(result))
       console.log(result);
-      
-      navigate("/mypets")
-      } catch (error) {
-        //setError(error.response.data.message);
-        console.log(error)
+      //setLoading(true)
+       navigate("/mypets")
      
+    } catch (error) {   
+        setError(error.response.data.message);
         setLoading(false)
-        
-      }};
-
-
+      }}
         
       const upload = (pics) => {
         setPicMessage(null);
@@ -116,18 +105,12 @@ try {
           }
         };
       
-                
-      
-
   return (
     <> 
       <div className=" min-vh-100 d-flex m-0 p-0">
         <Sidebar />
-
-    
- 
         <div className=" min-vh-100 d-flex align-items-center justify-content-center">
-          <div className=''>
+          <div className='ms-5 '>
             <label for="formFileMultiple" className="form-label ">Upload Documents</label><br/>
             <input 
             className='upload ' 
@@ -138,8 +121,10 @@ try {
             onChange= {(e) => {upload(e.target.files[0])}}/>
           </div>
           
-          <Form className="">
+          <Form className="mb-4">
             <Row className="mb-3 mt-5">
+              {loading && <Loading />}
+              {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
               <Form.Group as={Col} controlId="formGridBreed">
                 <h5>Pet </h5>
                 <Form.Label>Name</Form.Label>
@@ -229,10 +214,12 @@ try {
               </Button>
             </div>
           </Form>
+          
         </div>
       </div>
-      <br/>
-    </>
+      <Footer />
+      
+  </>
   )};
 
     

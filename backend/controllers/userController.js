@@ -36,7 +36,9 @@ const getUser = async (req, res) => {
     
   } else {
     res.status(400)//.send( "Invalid email or password");
+    console.log(res)
     throw new Error("Invalid email or password");    
+    
   }
   
 };

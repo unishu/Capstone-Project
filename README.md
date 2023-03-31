@@ -27,8 +27,7 @@ Once both backend and frontend have launched, open browser and open http://local
 - once launched, open browser and open http://localhost:backendPORT (default 5000)
 
 NOTE: If you would like to use your own Mongodb database, make sure you replace the MONGO_URI in backend/.env folder with your own uri and JWT_SECRET with a value of your own before running npm start 
-
-<br/><br/>
+<br/>
 
 ## to run application using Docker Compose
 - pull code from GitHub

@@ -67,11 +67,6 @@ const ProfileScreen = () => {
     setAddress(result.address);
     setPassword(result.password);
     setConfirmPassword(result.confirmPassword);
-    
-    
-   
-  
-
   }
  
   const updateUser = async (e) => {
@@ -105,14 +100,11 @@ const ProfileScreen = () => {
     result = await result.json();
 
     localStorage.setItem("user", JSON.stringify(result)) 
-    //localStorage.setItem("token", JSON.stringify(token)) 
-//console.log(token)
     console.log(result);
-    //if (result){
+   
       alert("Your Profile has been updated!");
       setLoading(false)
        navigate('/mypets');
-       //setLoading(false)
     }catch(error){
       setError(error.response.data.message);
     }

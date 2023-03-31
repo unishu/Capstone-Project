@@ -165,6 +165,7 @@ const fetchPets = async () => {
                                             <Button 
                                             variant= "info" 
                                             className='mb-4' 
+                                            size='sm'
                                             href= {`/petrecord/${pet._id}`} //{`/petrecords/${pet.name}/records`}
                                             > View Records
                                             </Button> {' '}

@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import Footer from '../footer/Footer'
 import boston from  '../../assets/boston.png'
+import { fontStyle } from '@mui/system'
 
 const AboutUs = () => {
   return (
@@ -14,20 +15,24 @@ const AboutUs = () => {
           <Col md={6} lg={5} className='ml-auto d-flex align-items-center mt-4 mt-md-0'>  
          
             <div> 
-              <h1 className='font-link mb-4' style={{ fontSize: "4rem" }}>A little about PetBook</h1>
-                <p>A Place For You + Your Best Friend</p>
+              <h1 className='font-link mb-1' style={{ fontSize: "4rem" }}>A little about PetBook</h1>
+                <h4 >A Place For You + Your Best Friend</h4><br/>
 
-                <p>  We understand that your pets are an important part of your family, which is why 
-                  we created an easy-to-use platform to help you manage their health and schedule.<br/><br/>
-    
+                <p>Welcome to our PetBook! Our platform is 
+                  designed to help pet owners keep track of all the important details about their furry, 
+                  feathered, or scaled friends in one convenient location.<br/><br/>
+                  
+                  With our user-friendly interface, you can easily store and access important information 
+                  such as your pet's name, breed, age, weight, and medical history. You can also upload 
+                  photos and create a profile for each of your pets.<br/><br/>
 
-                Our app is designed to make managing your pet's schedule and health a breeze. 
-               With just a few clicks, you can schedule appointments, set reminders for important events, 
-                and keep track of your pet's health. With our user-friendly interface and customizable 
-                features, you can tailor the app to your pet's unique needs.<br/><br/>
-   
-                Whether you're a busy pet parent or just want to stay organized, PETBOOK has everything you 
-                need to keep your furry friend happy and healthy. </p>
+                  Our mission is to make pet ownership easier and more enjoyable for you by providing 
+                  a secure, reliable, and user-friendly platform to store and manage all your pet 
+                  information. With our website/app, you'll have peace of mind knowing that your pet's 
+                  information is always accessible and up-to-date. <br/><br/>
+
+                  Thank you for choosing our digital pet information storage website/app. We look forward 
+                  to helping you keep your furry friends happy and healthy!.</p>
             </div>
             </Col>
           
