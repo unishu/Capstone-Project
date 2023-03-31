@@ -1,0 +1,57 @@
+{
+    "swagger": "2.0",
+    "info": {
+    "version": "1.0.0",
+    "title": "My User Project CRUD",
+    "description": "My User Project Application API",
+    "license": {
+    "name": "MIT",
+    "url": "https://opensource.org/licenses/MIT"
+    }
+    },
+    "host": "localhost:5000",
+    "basePath": "/",
+    "tags": [
+    {
+    "name": "PetBook",
+    "description": "API for PetBook in the system"
+    }
+    ],
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "paths": {
+        "/api/users": {
+        "get": {
+        "tags": [
+        "Get All"
+        ],
+        "summary": "Retrieves list of users from db",
+        "parameters": [],
+        "responses": {
+        "200": {
+        "description": "This service returns all users"
+        }
+        }
+        }
+    }
+
+},
+        "/api/pets": {
+        "get": {
+        "tags": [
+        "Fetch all pets "
+        ],
+        "summary": "Retrieve all pets  from database using ID",
+        "parameters": [],
+        "responses": {
+        "200": {
+        "description": "This services returns a all pet records"
+        }
+        }
+        }    
+    }
+}
+
+        
+

@@ -7,7 +7,8 @@ const fileUpload = require("express-fileupload");
 const connectDB = require("./db/db")
 const server = http.createServer(app);
 const path = require('path')
-//let io = require('socket.io')(http);
+const swaggerUi = require('swagger-ui-express');
+swaggerDocument = require('./swagger.json');
 require("dotenv").config();
 
 
@@ -16,11 +17,6 @@ process.on('uncaughtException', function (err) {
     console.log(err);
   });
 
-
-
-//require("./db/dbConnect").connect();
-
-//app.use(express.json());
 
 app.use(cors());
 app.use(fileUpload());
@@ -33,14 +29,11 @@ app.use(bodyParser.json(), urlencodedParser)
 
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
-
-
-//BodyParsing
-//app.use(express.urlencoded({extended: false}));
-
-//let dbConnect= require("./db/dbConnect")
-
-
+app.use(
+  '/api-docs',
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocument)
+  );
 
 app.use('/api/users', require("./routes/userRoutes"));
 
@@ -63,6 +56,12 @@ app.get('*', function(req, res) {
 });
 
 
+
+app.get("/api/pets/:id", (req, res) => {
+    const pet = pets.find((n) => n._id === req.params.id)
+    res.send(pet)
+});
+
 app.use(notFound);
 app.use(errorHandler);
 
@@ -76,5 +75,6 @@ server.listen(port, () => {
 
 console.log('DB_URL :', process.env.DB_URL);
 console.log('DB_Name :', process.env.DB_Name);
+
 
 
