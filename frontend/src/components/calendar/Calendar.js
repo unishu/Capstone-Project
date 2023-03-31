@@ -15,6 +15,8 @@ export default function() {
     const [events, setEvents] = useState([])
     const calendarRef= useRef(null)
 
+  
+
     const onEventAdded = (event) => {
         let calendarApi = calendarRef.current.getApi()
         calendarApi.addEvent( {
@@ -55,7 +57,7 @@ async function  handleDateSet(data) {
                             plugins = {[dayGridPlugin]}
                             initialView='dayGridMonth'
                             eventAdd={(event) => handleEventAdd(event)}
-                            datesSet = {(date) => handleDateSet(date)}   
+                            datesSet = {(date) => handleDateSet(date)} 
                             />
                         </div>
                         <AddEventModal isOpen={modalOpen} 

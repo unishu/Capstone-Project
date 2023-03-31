@@ -33,7 +33,6 @@ const getUser = async (req, res) => {
     
   } else {
     res.status(400)//.send( "Invalid email or password");
-    console.log(res)
     throw new Error("Invalid email or password");    
   } 
 };
@@ -86,7 +85,6 @@ const createUser = asyncHandler (async (req, res) => {
   
 const getUserById = async (req, res) => {
   let result = await models.Users.findOne({_id: req.params.id});
-  console.log(req.params.id)
   if (result) {
     res.status(201).json({ 
       _id: result._id,
@@ -104,7 +102,6 @@ const getUserById = async (req, res) => {
 
 const deleteUser = (req, res) => {
   models.Users.findByIdAndRemove(req.params.id, (err, data) => {
-      console.log(req.params);
       if (err) throw err;
       res.send({result: 200, data: data})
     });
@@ -114,7 +111,6 @@ const deleteUser = (req, res) => {
 const updateUser = asyncHandler( async (req, res) => {
   
   const user = await models.Users.findById( req.user._id);  
-  console.log (`REQ user ID` +" " + req.user._id)
 
   if (user) {
       user.name = req.body.name  || user.name;
