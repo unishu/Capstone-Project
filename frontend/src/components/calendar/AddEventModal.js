@@ -18,7 +18,6 @@ const onSubmit = (event) => {
         end
     })
     onClose();
-
 }
 
     return (

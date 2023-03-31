@@ -29,14 +29,15 @@ const Navbar = () => {
                     >
                         <span className="navbar-toggler-icon"></span>
                     </Button>
-  
                     <div className="collapse navbar-collapse" id="navbarNavDropdown">
                     {
                         auth ?
                             <ul className="navbar-nav mb-2 mb-lg-0 ms-auto">
-                    
                                 <li className="nav-item">
                                     <a className="nav-link" href="/about-us">About Us</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link active" aria-current="page" href="/contact-us ">Contact</a>
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link active" aria-current="page" href="/mypets ">Dashboard</a>
@@ -46,12 +47,11 @@ const Navbar = () => {
                             </ul>
                         :
                             <ul className="navbar-nav mb-2 mb-lg-0 ms-auto me-4">
-                            
                                 <li className="nav-item">
                                     <a className="nav-link" href="/about-us">About Us</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="/about">Contact</a>
+                                    <a className="nav-link" href="/contact-us">Contact</a>
                                 </li>
                                 <li><a className="nav-link" href="/register">Register</a></li>
                                 <li><a className='nav-link' href='/login'>Log In</a></li>

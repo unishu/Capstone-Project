@@ -10,15 +10,13 @@ CDBSidebarMenuItem,
 import { NavLink } from 'react-router-dom';
 
 
- const Sidebar = () => {
-
+const Sidebar = () => {
     const [pets, setPets] = useState([]);
 
-        //gets list of pets
-const fetchPets = async () => {
-    const userInfo = JSON.parse(localStorage.getItem('user')).token;
-    console.log(userInfo)
-        
+    //gets list of pets
+    const fetchPets = async () => {
+        const userInfo = JSON.parse(localStorage.getItem('user')).token;
+
     let result = await fetch ('http://localhost:5000/api/petrecords', {
         method: "GET",
         headers: {
@@ -28,13 +26,7 @@ const fetchPets = async () => {
     })
         result = await result.json()
         setPets(result)  
-        //localStorage.setItem("pet", JSON.stringify(result))
-        console.log(result)
-      /*  const {data} = await axios.get('http://localhost:5000/api/pets')
-        setPets(data) */
     };
-
-   
 
     return (
     <div style={{ display: 'flex', height: 'auto', overflow: 'scroll initial'}}>
@@ -65,7 +57,7 @@ const fetchPets = async () => {
                     <NavLink exact to="/edit-profile" activeClassName="activeClicked">
                         <CDBSidebarMenuItem icon="user">My Profile</CDBSidebarMenuItem>
                     </NavLink>
-                    <NavLink  to="/contact" activeClassName="activeClicked">
+                    <NavLink  to="/contact-us" activeClassName="activeClicked">
                         <CDBSidebarMenuItem icon="chart-line">Contact Us</CDBSidebarMenuItem>
                     </NavLink>
                     <NavLink

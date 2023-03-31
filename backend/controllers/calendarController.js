@@ -1,11 +1,10 @@
 'use strict'
-
 const models = require("../models");
-const asyncHandler = require("express-async-handler");
 const moment = require("moment")
 
 
 const newEvent = async(req, res) => {
+    let {start, end, title, userId} = req.body;
     try {
     const event = await new models.Events(req.body).save();
     res.send(event);

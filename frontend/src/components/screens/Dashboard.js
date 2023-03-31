@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {useNavigate}  from 'react-router-dom';
 import {Container, Row, Col, Card} from 'react-bootstrap';
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
-import MainScreen from '../MainScreen';
+import MainScreen from './MainScreen';
 import Sidebar from '../Sidebar';
 import profilePic from '../../assets/profilePic.jpg'
 

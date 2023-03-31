@@ -6,8 +6,8 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Sidebar from "../Sidebar";
-import Loading from "../Loading";
-import ErrorMessage from "../ErrorMessage";
+import Loading from "../services/Loading";
+import ErrorMessage from "../services/ErrorMessage";
 import axios from "axios";
 
 export const NewPet = () => {
@@ -92,16 +92,14 @@ try {
     <> 
       <div className=" min-vh-100 d-flex m-0 p-0">
         <Sidebar />
- 
         <div className="container min-vh-100 d-flex align-items-center justify-content-center">
-      
           <Form className="" //onSubmit={handleSubmit}
           >
             <h2 className="mb-5">Register new pet</h2>
               {loading && <Loading />}
               {success && (
                 <ErrorMessage variant="success">
-                  Updated Successfully
+                  Added Successfully
                 </ErrorMessage>
               )}
             <Row className="mb-3">
@@ -194,11 +192,11 @@ try {
             Register
             </Button>
           </div>
-        </Form>
-    </div>
-    </div>
-    <br/>
-  </>
+          </Form>
+        </div>
+      </div>
+      <br/>
+    </>
   );
   }
 

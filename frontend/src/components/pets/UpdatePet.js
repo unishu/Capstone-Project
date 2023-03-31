@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react'
 import {Form, Row, Col, Button, Container} from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import Sidebar from '../Sidebar';
-import Loading from '../Loading';
+import Loading from '../services/Loading';
 
 
 const UpdatePet = () => {
@@ -20,16 +20,14 @@ const UpdatePet = () => {
     const [loading, setLoading] = useState(false);
     const [picMessage, setPicMessage] = useState();
 
-   
-
-   const params = useParams();
-   const navigate = useNavigate();
+    const params = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
       getPetDetails();
     }, [])
     
- 
+//get pet details
   const getPetDetails = async (e) => {
     console.log(params); 
    
@@ -50,18 +48,15 @@ const UpdatePet = () => {
     setPic(result.pic);
   }
  
-
+//update pet profile
   const updatePet = async (e) => {
     e.preventDefault(); 
     const token= JSON.parse(localStorage.getItem('user')).token
-    
-    console.warn(name, species, breed, birthday, sex, weight, registrationId);
-    
+      
     let result =  await fetch(`http://localhost:5000/api/pets/${params.petid}`, {
       method: "PUT",
       body: JSON.stringify({name, pic, species, breed, birthday, sex, weight, registrationId}),
       headers: {
-
         "Content-Type": "application/json",
         'Authorization': `Bearer ${token}`,
       }
@@ -77,6 +72,7 @@ const UpdatePet = () => {
     }
    
   }
+//upload pic
   const postDetails = (pics) => {
     setPicMessage(null);
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
@@ -104,17 +100,13 @@ const UpdatePet = () => {
     
   const submitHandler = (e) => {
     e.preventDefault();
-
-
   }
     
 
   return (
-
-    <> 
+  <> 
     <div className=" min-vh-100 d-flex m-0 p-0 ">
     <Sidebar />
- 
    <div className="container min-vh-100 d-flex align-items-center justify-content-center">
     <Form className="" //onSubmit={handleUpdate}
     >
@@ -142,7 +134,7 @@ const UpdatePet = () => {
       </Row>
 
       <Row className="mb-3">
-      <Form.Group as={Col} controlId="formGridBreed">
+        <Form.Group as={Col} controlId="formGridBreed">
           <Form.Label>Species</Form.Label>
           <Form.Control 
           type="text" 
@@ -161,7 +153,6 @@ const UpdatePet = () => {
           value= {breed}  
           onChange={(e) => {setBreed(e.target.value)}} />
         </Form.Group>
-
       </Row>
 
       <Row className="mb-3">
@@ -186,12 +177,8 @@ const UpdatePet = () => {
         </Form.Group>
       </Row>
 
-      
-
-
       <Row>
-        
-      <Form.Group as={Col} controlId="formGridEmail">
+        <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>Weight</Form.Label>
           <Form.Control 
           type="text" 
@@ -210,43 +197,33 @@ const UpdatePet = () => {
           value= {registrationId}  
           onChange={(e) => {setRegistrationId(e.target.value)}} />
         </Form.Group>
-
-        
       </Row>
-
-
 
       <div className="text-end mt-4">
         {loading && <Loading size={50} />}
-      <Button 
-        variant="primary" 
-        type="submit" 
-        className="register-btn col-sm-3 " 
-        onClick={updatePet}
-      >
-        Update
-      </Button>
-      <Button 
-        variant="danger" 
-        type="submit" 
-        className="register-btn col-sm-3 ms-3"
-        href="/mypets" 
-        //onClick={updatePet}
-      >
+        <Button 
+          variant="primary" 
+          type="submit" 
+          className="register-btn col-sm-3 " 
+          onClick={updatePet}
+        >
+          Update
+        </Button>
+        <Button 
+          variant="danger" 
+          type="submit" 
+          className="register-btn col-sm-3 ms-3"
+          href="/mypets" 
+        
+        >
         Cancel
-      </Button>
+        </Button>
       </div> 
-      
-    
     </Form>
-
-   
     </div>
     </div>
     <br/>
-    
-    
-    </>
+  </>
   )
 }
 

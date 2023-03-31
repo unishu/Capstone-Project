@@ -63,34 +63,6 @@ app.get('*', function(req, res) {
 });
 
 
-/*app.get("/", (req, res) => {
-    res.send(path.join(__dirname, "../frontend/public/index.html"))
-}); 
-
-
-//const path = require("path");
-app.use(express.static(path.join(__dirname, "frontened/build"))) */
-
-
-
-/*app.post("/pic", (req, res) => {
-    const fileName= Date.now() + req.files.upload.name;
-    const file = req.files.upload;
-    let uploadPath = __dirname + "/uploads/" + fileName;
-    file.mv(uploadPath, (err) => {
-        if (err) {
-            return res.send(err);
-        }
-    });
-    res.status(200)
-}); */
-
-
-app.get("/api/pets/:id", (req, res) => {
-    const pet = pets.find((n) => n._id === req.params.id)
-    res.send(pet)
-});
-
 app.use(notFound);
 app.use(errorHandler);
 
@@ -106,37 +78,3 @@ console.log('DB_URL :', process.env.DB_URL);
 console.log('DB_Name :', process.env.DB_Name);
 
 
-
-
-/*
-const express = require('express')
-const app = express("./app")
-require("dotenv").config();
-
-var port = 3000
-
-app.use(express.json())
-
-//app.use('/', express.static('public'))
-//app.use(express.static(path.join(__dirname, "public")))
-
-
-app.get('/test', (req, res) => {
-    res.send('Hello World!')
-})
-
-app.get("/animal/:name", (req, res) => {
-    console.log(req.params.name)
-    res.send("You've got me")
-})
-
-
-
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
-})
-
-app.get("/", (req, res) => {
-    res.json({ message: "Welcome to my MongoDB application." });
-});
-   */

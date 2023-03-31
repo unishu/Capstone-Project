@@ -4,9 +4,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import MainScreen from '../../MainScreen';
-import Loading from "../../Loading";
-import ErrorMessage from "../../ErrorMessage";
+import MainScreen from '../MainScreen';
+import Loading from "../../services/Loading";
+import ErrorMessage from "../../services/ErrorMessage";
 import Sidebar from '../../Sidebar';
 import Footer from '../../footer/Footer';
 

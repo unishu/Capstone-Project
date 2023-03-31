@@ -5,7 +5,7 @@ import { FaFile } from "react-icons/fa";
 import axios from 'axios'
 import { Button, Card, Badge, Accordion } from 'react-bootstrap'
 import {Row, Col} from 'react-bootstrap'
-import MainScreen from '../MainScreen'
+import MainScreen from '../screens/MainScreen'
 import Sidebar from '../Sidebar'
 import Footer from '../footer/Footer'
 
@@ -82,16 +82,13 @@ const searchHandler = async(event) => {
 
   return (
   <>
+  <div className=" min-vh-100 d-flex m-0 p-0">
+  <Sidebar />
     <Container className='min-vh-100'> 
         <div className=' m-auto w-50 mt-5'>
-            <Button variant = "info" className='mb-2' href= '/mypets'>
-                Back to Dashboard
-            </Button><br/>
                 <input type="" className='search-record-box rounded w-20 p-1 mb-2 mt-5' placeholder='Search Record' 
                 onChange={searchHandler}/><br/><br/>
         <div className=' mb-5'>
-
-    
         {
             records.length >0 ? records.map((record, index) => (
                 <Accordion flush key={record._id}> 
@@ -162,6 +159,7 @@ const searchHandler = async(event) => {
         </div>
         </div>
     </Container>
+    </div>
     <Footer />
 </>
   )

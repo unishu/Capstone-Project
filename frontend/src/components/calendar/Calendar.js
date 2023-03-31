@@ -3,14 +3,11 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import AddEventModal from '../calendar/AddEventModal'
 import {Button, Container} from 'react-bootstrap';
-import Typography from '@mui/material/Typography';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import "../../components/calendar/Calendar.css"
 import axios from "axios"
 import moment from 'moment'
 import Footer from "../footer/Footer";
-import Sidebar from "../Sidebar";
+
 
 export default function() {
 
@@ -40,10 +37,15 @@ async function  handleDateSet(data) {
 
     return (
         <>
+        <Button variant='primary'
+                sx={{ color: 'white', backgroundColor: 'blue', borderColor: '' }}
+                className='mt-4 ms-5' href= '/mypets'>Back to Dashboard
+                </Button><br/>
             <div className="min-vh-100 d-flex p-0" >
-                <Container className="  mt-2 mb-3">
+                
+                <Container className="mb-4">
                     <div className="bg-white">
-                    <Container className="cal-container w-75 h-25 mt-5 p-0 ">
+                    <Container className="cal-container h-25 mt-4 p-5 ">
                         <Button className="cal-btn mt-3 mb-4" onClick={()=> setModalOpen(true)}>Add Event</Button>
 
                         <div style= {{position: "relative", zIndex: 0}} >

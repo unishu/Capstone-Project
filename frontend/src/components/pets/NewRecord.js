@@ -5,8 +5,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import ErrorMessage from "../ErrorMessage";
-import Loading from "../Loading";
+import ErrorMessage from "../services/ErrorMessage";
+import Loading from "../services/Loading";
 import Sidebar from "../Sidebar";
 import Footer from "../footer/Footer";
 import axios from "axios";
@@ -14,9 +14,7 @@ import axios from "axios";
 export const NewRecord = () => {
 
 
-    const [file, setFile] = useState(null);
     const [petName, setPetName] = useState('');
-    
     const [address, setAddress] = useState('');
     const [vet, setVet] = useState('');
     const [name, setName] = useState('');
@@ -33,18 +31,15 @@ export const NewRecord = () => {
     const [error, setError] = useState(false)
     const [message, setMessage] = useState(null);
     const [success, setSuccess] = useState(false);
-    const recordId = localStorage.getItem("record")
+
     const navigate =useNavigate();
     const params = useParams();
 
-  
 useEffect(() => {
   getDetails();
 }, [])
 
-const getDetails = async (e) => {
- 
-  console.log(params); 
+const getDetails = async (e) => { 
   setLoading(false)
   let result = await fetch(`http://localhost:5000/api/pets/${params.petid}`); 
   result = await result.json();
@@ -52,12 +47,12 @@ const getDetails = async (e) => {
   console.warn(result); 
 
 }
-    const addRecord = async (e)=> {
-      e.preventDefault();
-      const userId= JSON.parse(localStorage.getItem('user'))._id
-      const petId= JSON.parse(localStorage.getItem('pet'))._id
-      const token = JSON.parse(localStorage.getItem('user')).token;
-      
+  const addRecord = async (e)=> {
+    e.preventDefault();
+    const userId= JSON.parse(localStorage.getItem('user'))._id
+    const petId= JSON.parse(localStorage.getItem('pet'))._id
+    const token = JSON.parse(localStorage.getItem('user')).token;
+   
 try {
       let result = await fetch(`http://localhost:5000/api/petrecords/add/${params.petid}`, {
         method: "POST",
@@ -72,8 +67,7 @@ try {
       localStorage.setItem("record", JSON.stringify(result))
       localStorage.setItem("pet", JSON.stringify(result))
       console.log(result);
-      //setLoading(true)
-       navigate("/mypets")
+      navigate("/mypets")
      
     } catch (error) {   
         setError(error.response.data.message);

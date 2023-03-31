@@ -19,7 +19,6 @@ router.route('/').get(protect, getPets);
     controllers.petController.getPets(req, res);
 });
 
-
 //register new pet
 /*router.post('/register',  (req, res) => {
     controllers.petController.registerPet(req, res);
@@ -38,12 +37,6 @@ router.get("/search/:key", protect, function(req, res) {
     controllers.petController.searchPet(req, res);
 })
 
-/*router
-.route("/search/:key").get(protect, searchPet)
-*/
-
-
-//get, update and detele
-//router.route('/:id').get().put().delete()
+/*router.route("/search/:key").get(protect, searchPet)*/
 
 module.exports = router;

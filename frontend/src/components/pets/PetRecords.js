@@ -5,7 +5,7 @@ import { FaFile } from "react-icons/fa";
 import axios from 'axios'
 import { Button, Card, Badge, Accordion } from 'react-bootstrap'
 import {Row, Col} from 'react-bootstrap'
-import MainScreen from '../MainScreen'
+import MainScreen from '../screens/MainScreen'
 import Sidebar from '../Sidebar'
 import Footer from '../footer/Footer'
 
@@ -21,14 +21,10 @@ const PetRecords = () => {
     }, []);
 
 
-    //gets list of pets
+//gets list of pets
     const fetchRecords = async () => {
         const userInfo = JSON.parse(localStorage.getItem('user')).token;
-        console.log(userInfo)
-
-     /*   const recordId= JSON.parse(localStorage.getItem('record'))._id;
-       console.log(`recordID is` + recordId); */  
-
+  
         let result = await fetch ("http://localhost:5000/api/petrecords", //(`http://localhost:5000/api/petrecords/${recordId}`)
         {
             method: "GET",
@@ -39,30 +35,24 @@ const PetRecords = () => {
         result = await result.json()
         localStorage.setItem("record", JSON.stringify(result))
         setRecords(result)
-      /*  const {data} = await axios.get('http://localhost:5000/api/pets')
-        setPets(data) */
     };
-   // console.log(pets);
-
+ 
+//delete pet record
    const deleteRecord = async (id) => {
     console.log(id)
     if (!window.confirm("Are you sure?")) {  
         return false;  
     } else{
-
     let result = await fetch(`http://localhost:5000/api/petrecords/${id}`, {
         method: "DELETE",
-
     });
     result = await result.json();
     if (result){
         alert("Record deleted");
         localStorage.removeItem('record');
-    //navigate("/")
         fetchRecords()
     }
     }
-   
 };
 
 const searchHandler = async(event) => {
@@ -84,6 +74,8 @@ const searchHandler = async(event) => {
   <Sidebar />
     <Container className='min-vh-100 m-auto w-50 mt-5'> 
         <div className=' '>
+            <MainScreen className="mt-4 mb-2" title= {'Pet Records'} >
+            
                 <input type="" className='search-record-box rounded w-20 p-1 mb-2 mt-5' placeholder='Search Record' 
                 onChange={searchHandler}/><br/><br/>
         <div className=' mb-5'>
@@ -100,7 +92,7 @@ const searchHandler = async(event) => {
                                 </Accordion.Header>
                             <div> {' '}
                                 <Button 
-                                href={`update/${record._id}`} //or {"/update/"+pet.id}
+                                href={`/petrecord/update/${record._id}`} //or {"/update/"+pet.id}
                                 style={{marginLeft: "1em"}}
                                 >
                                     Update 
@@ -157,6 +149,7 @@ const searchHandler = async(event) => {
             :<h1>No Record Found</h1>
             }
         </div>
+        </MainScreen>
         </div>
     </Container>
    

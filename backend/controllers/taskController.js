@@ -4,7 +4,6 @@ const asyncHandler = require("express-async-handler");
 const { model } = require("mongoose");
 
 
-
 const getTask = asyncHandler(
     async (req, res) => {
         try {
@@ -13,10 +12,6 @@ const getTask = asyncHandler(
         } catch (error) {
             res.send(error);
         }
-       /* const task = await models.Tasks.find({})
-        res.json(task)
-       //console.log({userId: req.user._id}) */
-
     });
 
 
@@ -28,15 +23,6 @@ const getTask = asyncHandler(
             res.send(error);
         }
     
-    /*let {content, userId} = req.body
-    console.log(req.body)
-
-    const task =  new models.Tasks({content, userId});
-    console.log(userId)
-
-    const existingTask = await task.save();
-    res.status(200).json(existingTask)
-    console.log(userId) */
 }
 
 
@@ -49,7 +35,6 @@ const deleteTask = async (req, res) => {
         res.send(error);
     }
     /*const task = await models.Tasks.findById(req.params.id);
-
 
     if (task) {
         await task.remove();

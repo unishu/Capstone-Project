@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
-import ErrorMessage from "../../ErrorMessage";
-import Loading from "../../Loading";
+import ErrorMessage from "../../services/ErrorMessage";
+import Loading from "../../services/Loading";
 import { useNavigate, Link } from "react-router-dom";
 import {Form} from "react-bootstrap"
 

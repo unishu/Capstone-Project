@@ -1,7 +1,5 @@
-//wrapper component
-
 import React from 'react'
-import Container from 'react-bootstrap/Container' // or import {Container} from 'react-bootstrap'
+import Container from 'react-bootstrap/Container' 
 
 const Layout = (props) => {
 
@@ -11,15 +9,9 @@ const Layout = (props) => {
             {props.children}
 
         </Container>
-    
         
     )
-/*  return (
-    <Container>Layout
-        {props.children}
-    </Container>
-  )
-  */
+
 }
 
 export default Layout

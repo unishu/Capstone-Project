@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import {Container, Row, Col} from 'react-bootstrap'
 import axios from 'axios'
 import { Button, Card, Badge, Accordion } from 'react-bootstrap'
-import MainScreen from '../MainScreen'
+import MainScreen from '../screens/MainScreen'
 import Sidebar from '../Sidebar'
 import Footer from  '../footer/Footer'
 import "../screens/profileScreen/ProfileScreen.css"
@@ -30,7 +30,7 @@ const navigate = useNavigate();
   }
 
 
-    //gets list of pets
+//gets list of pets
 const fetchPets = async () => {
     const userInfo = JSON.parse(localStorage.getItem('user')).token;
     console.log(userInfo)
@@ -44,22 +44,18 @@ const fetchPets = async () => {
     })
         result = await result.json()
         setPets(result)  
-        //localStorage.setItem("pet", JSON.stringify(result))
-        console.log(result)
-      /*  const {data} = await axios.get('http://localhost:5000/api/pets')
-        setPets(data) */
     };
-   // console.log(pets);
+   
 
-
-    //deleting pet
-    const deletePet = async (id) => {
-        console.log(id)
-        const userInfo = JSON.parse(localStorage.getItem('user')).token;
-        console.log(userInfo)
-        if (window.confirm("Are you sure?")) {     
-        }
-
+//deleting pet
+const deletePet = async (id) => {
+    console.log(id)
+    const userInfo = JSON.parse(localStorage.getItem('user')).token;
+    console.log(userInfo)
+        if (!window.confirm("Are you sure?")) {  
+            return false;  
+    } else {   
+        
         let result = await fetch(`http://localhost:5000/api/pets/${id}`, {
             method: "DELETE",
             headers: {
@@ -67,14 +63,13 @@ const fetchPets = async () => {
                 'Authorization': `Bearer ${userInfo}`
             }
         });
-        
         result = await result.json();
         if (result){
             alert("Pet deleted");
             localStorage.removeItem('pet');
             fetchPets()
         }
-    };
+    }};
 
     const editPet =() => {
         navigate('/update/:id')
@@ -163,17 +158,9 @@ const fetchPets = async () => {
                                             </Button> {' '}
 
                                             <Button 
-                                            variant= "info" 
-                                            className='mb-4' 
-                                            size='sm'
-                                            href= {`/petrecord/${pet._id}`} //{`/petrecords/${pet.name}/records`}
-                                            > View Records
-                                            </Button> {' '}
-
-                                            <Button 
                                             variant = "success" 
                                             className='mb-4' 
-                                            href="/petcalendar"> 
+                                            href="/calendar"> 
                                             View Schedule
                                             </Button> {' '}
 

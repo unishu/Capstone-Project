@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
 import {useNavigate, Link} from "react-router-dom"
-import ErrorMessage from "../../ErrorMessage";
+import ErrorMessage from "../../services/ErrorMessage";
 import axios from "axios";
-import Loading from "../../Loading";
+import Loading from "../../services/Loading";
 
 
 export const Register = () => {
