@@ -26,7 +26,6 @@ connectDB()
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(bodyParser.json(), urlencodedParser) 
 
-
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
 app.use(
