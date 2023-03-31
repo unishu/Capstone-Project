@@ -21,7 +21,7 @@ Once both backend and frontend have launched, open browser and open http://local
 
 ## to run both backend and front consecutively
 - Pull code form Github
-- cd into frontend folder and run npm run build commmand (will build latest optimised build to replace one that exists if any)
+- cd into frontend folder and run npm run build commmand (this will build latest optimised build to replace one that exists in frontend folder if it exists; copy and paste the build folder into root of backend folder)
 - copy and paste build folder into backend folder
 - cd into backend and run npm start
 - once launched, open browser and open http://localhost:backendPORT (default 5000)
