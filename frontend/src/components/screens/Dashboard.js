@@ -6,15 +6,7 @@ import MainScreen from './MainScreen';
 import Sidebar from '../Sidebar';
 import profilePic from '../../assets/profilePic.jpg'
 
-
-//import styled from 'styled-components';
-
-
-
-
 function Dashboard(props) {
-
-
   const [user, setUser] = useState([])
 
   useEffect(() => {
@@ -51,29 +43,13 @@ function Dashboard(props) {
     setPets(data) */
 };
 
-
-
-
-
-
-
- 
   return (
     <div className=" min-vh-100 d-flex p-0">
-    <Sidebar />
+      <Sidebar />
     
-
-  
-    
-   
     <div className='container  mt-5'> 
     <MainScreen title= {`Welcome Back ${JSON.parse(auth).name}!`} > 
-    
-
- 
       <Container className="py-5 h-100">
-
-     
         <Row className="justify-content-center align-items-center h-100">
           <Col lg="6" className="mb-4 mb-lg-0">
             <Card className="mb-3" style={{ borderRadius: '.5rem' }}>

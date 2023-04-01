@@ -16,11 +16,6 @@ export const Register = () => {
     const [picMessage, setPicmessage] = useState("");
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false);
-
-
-
-    const [validate, setValidate] = useState('');
-    const [showPassword, setShowPassword] = useState(''); 
     const [success, setSuccess] = useState('')
 
    
@@ -31,47 +26,12 @@ export const Register = () => {
         if(userInfo) {
            navigate("/dashboard") 
         }
-        
     },[])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true)
 
-        
-     /*   if (password !== confirmpassword) {
-            setMessage('Passwords Do Not Match');
-        } else {
-            setMessage(null)
-            try { 
-                const config = {
-                    headers: {
-                        'Access-Control-Allow-Origin': '*',
-                        //"Content-type": "applications/json",
-                        
-                    }
-                };
-                
-
-                setLoading(true);
-                let { data } = await axios.post("http://localhost:5000/api/users/register", {
-                    name, email, password
-                }, config
-                );
-                
-console.log(data)
-                
-                localStorage.setItem("user", JSON.stringify(data));
-                navigate('/dashboard');
-                setLoading(false);
-            } catch (error) {
-                setError(error?.response?.data?.message);
-                setLoading(false)
-            }
-        };
-
-       
-*/
        if (password !== confirmpassword) {
         setMessage('Passwords do not match');
         setLoading(false)
@@ -79,7 +39,8 @@ console.log(data)
         setMessage(null);
       try { 
 
-      let result = await fetch("http://localhost:5000/api/users/register", {
+        setLoading(true)
+        let result = await fetch("http://localhost:5000/api/users/register", {
             //mode: 'no-cors',
             method: 'POST',
             body: JSON.stringify({name, email, password}),
@@ -87,48 +48,39 @@ console.log(data)
                 'Content-Type': 'application/json'
             }
         });
+        setSuccess ("Update successful")
         result =  await result.json();
-        console.log(result);
         localStorage.setItem("user", JSON.stringify(result))
         setLoading(false)
         navigate('/mypets')
 
     }catch (error){
         setError(error.response.data.message);
-
     }
          }
-    
-        // navigate ('/dashboard') need to import navigate from react dom router
-        //or history.push(route link)
-
-        //setSuccess('true') */
-    }
-
-   
+    };
 
   return (
     <>
     
-    
     <div className="Auth-form-container ccontainer min-vh-100 d-flex align-items-center justify-content-center">
-    <div className="Auth-form-container col-8 col-md-7 col-lg-3">
-        {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
-        {message && <ErrorMessage variant="danger">{message} </ErrorMessage>}
-        {loading && <Loading />}
-        <form className="Auth-form d-flex flex-column align-content-end"
-         onSubmit={handleSubmit}
-            
+        <div className="Auth-form-container col-8 col-md-7 col-lg-3">
+            {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+            {message && <ErrorMessage variant="danger">{message} </ErrorMessage>}
+            {loading && <Loading />}
+            {success && (
+                <ErrorMessage variant="success">
+                  Registeration Successfully
+                </ErrorMessage>
+              )}
+            <form 
+            className="Auth-form d-flex flex-column align-content-end"
+            onSubmit={handleSubmit}
             method= "POST"
-            //onSubmit={register}
             autoComplete={"off"}
-        >
-            <div className="Auth-form-content">
-                <h2 className="Auth-form-title">Create Account</h2>
-
-                
-                        
-                        
+            >
+                <div className="Auth-form-content">
+                    <h2 className="Auth-form-title">Create Account</h2>
                         <div className="form-group mb-3">
                             <label>Name</label><br/>
                             <input
@@ -148,7 +100,6 @@ console.log(data)
                             </div>
                         </div>
 
-                        
 
                         <div className="form-group mb-3">
                         <label>Email</label><br/>
@@ -182,41 +133,21 @@ console.log(data)
                                     placeholder="Password"
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
-
-                                
-                                <div 
-                                //className={`${}`}
-                                >
-                                    {}
-                                </div>
-                                
-
                         </div>
-                    
+        
                         <div className="confirmpassword mb-3">
                             <label>Confirm Password</label><br/>
                                 <input
                                 type="password"
-                                    //type={ showPassword? "text": "password"}
-                                    className="form-control mt-1"
-                                    //className={`${}`}
-                                    id="confirmpassword "
-                                    name="confirmpassword"
-                                    value={confirmpassword}
-                                    placeholder="Confirm Password"
-                                    onChange={(e) => setConfirmPassword(e.target.value)}
-                                />
-
-                                <div 
-                                //className={`${}`}
-                                >
-                                    {}
-                                </div>
-                                
-
+                                className="form-control mt-1"
+                                id="confirmpassword "
+                                name="confirmpassword"
+                                value={confirmpassword}
+                                placeholder="Confirm Password"
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                />                               
                         </div>
 
-                
                         <div className="d-grid gap-2 mt-3">
                             <button
                                 type="submit"
@@ -226,8 +157,7 @@ console.log(data)
                                 Sign Up
                             </button>
                         </div>
-                    
-
+                
                     <hr/>
                     <div className="auth-option text-center">
                         Have an account?{" "}
@@ -235,40 +165,12 @@ console.log(data)
                             Sign In 
                             </Link>
                     </div>
-                
-    
             </div>
-
         </form>
-    </div>
-    </div>
-    
-        
-    
+        </div>
+        </div>
     </>
     
   ) }
 
 
-//export default Register
-
-/*
-
-<div className="form-group mb-3">
-                            <label>Username</label><br/>
-                            <input
-                                type="text"
-                                className="form-control mt-1"
-                                //className={`${}`}
-                                id="username"
-                                name="username"
-                                value={username}
-                                placeholder="e.g Jane Doe"
-                                onChange={(e) => setUsername(e.target.value)}
-                            />
-                            <div
-                                className="invalid-feedback text-start"
-                            >
-                                {}
-                            </div>
-                        </div> */

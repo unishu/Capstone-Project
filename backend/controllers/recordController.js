@@ -19,7 +19,7 @@ const getRecord = asyncHandler(
         let {petName, petId, userId, vet, healthConcerns, vaccinations, recordImage, recordId} = req.body;
 
         //const recordExists = await models.Pets.findOne({name}); 
-         const recordExists = await models.Records.findOne();
+         const recordExists = await models.Records.findOne({petName});
       
         if (recordExists) {
         res.status(400).send({result:"Record already exists"}) 
@@ -27,6 +27,8 @@ const getRecord = asyncHandler(
         }else {
             const record = new models.Records({petName, petId, userId, vet, healthConcerns, vaccinations, recordImage, userId: req.user._id});
             const existingRecord = await record.save();
+            console.log({userId: req.user.id})
+            console.log({PET: petId})
             res.status(200).json(existingRecord)
         }
     }
@@ -45,7 +47,13 @@ const getRecord = asyncHandler(
 //update pet record
     const updateRecord = asyncHandler( async (req, res) => {
         const {petName, vet, healthConcerns, vaccinations, recordImage} = req.body;
+        
         const record = await models.Records.findById(req.params.id);
+
+         /* if(pet.user.toString() !== req.user._id.toString()) {
+            res.status(401);
+            throw new Error ("You can't perform this action");
+        } */
 
         if (record) {
             record.petName = petName;
@@ -96,7 +104,8 @@ const getRecord = asyncHandler(
             ]
         });
         res.send(result)
-    });
+        console.log(result)
+    })
 
 
 

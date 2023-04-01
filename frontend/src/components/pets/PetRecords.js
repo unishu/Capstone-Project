@@ -39,12 +39,18 @@ const PetRecords = () => {
  
 //delete pet record
    const deleteRecord = async (id) => {
+    const userInfo = JSON.parse(localStorage.getItem('user')).token;
     console.log(id)
     if (!window.confirm("Are you sure?")) {  
         return false;  
     } else{
+
     let result = await fetch(`http://localhost:5000/api/petrecords/${id}`, {
         method: "DELETE",
+        headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${userInfo}`,
+        }
     });
     result = await result.json();
     if (result){
@@ -57,9 +63,16 @@ const PetRecords = () => {
 
 const searchHandler = async(event) => {
     let key = event.target.value;
+    const userInfo = JSON.parse(localStorage.getItem('user')).token;
     console.log({key: key})
     if (key){
-    let result = await fetch(`http://localhost:5000/api/petrecords/search/${key}`);
+    let result = await fetch(`http://localhost:5000/api/petrecords/search/${key}`, {
+    method: "DELETE",
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${userInfo}`
+    }
+});
     result = await result.json()
     if (result) {
         setRecords(result)

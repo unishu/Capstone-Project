@@ -6,7 +6,6 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Sidebar from "../Sidebar";
-import axios from "axios";
 import Footer from "../footer/Footer";
 import Loading from "../services/Loading";
 import ErrorMessage from "../services/ErrorMessage";
@@ -29,7 +28,8 @@ export const UpdateRecord = () => {
     const [ cancelEdit, setCancelEdit ] = useState(false);
     const [ edit, setEdit ] = useState(false);
     const [error, setError] = useState(false)
-    const recordId = localStorage.getItem("record")
+
+   
     const [success, setSuccess] = useState(false);
     const [errorMsg, setErrorMsg]= useState(false)
  
@@ -37,13 +37,23 @@ export const UpdateRecord = () => {
     const navigate =useNavigate();
     const params = useParams();
 
+    
+   
+    
   useEffect(() => {
     getRecords();
  }, [])
  
   const getRecords = async (e) => {
-  setLoading(false)
-  let result = await fetch(`http://localhost:5000/api/petrecords/${params.recordId}`); 
+    const userInfo = JSON.parse(localStorage.getItem('user')).token;
+  
+
+  let result = await fetch(`http://localhost:5000/api/petrecords/${params.recordId}`, {
+    method: "GET",
+    headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${userInfo}`,
+} }) ; 
   result = await result.json();
   localStorage.setItem("pet", JSON.stringify(result))
 
@@ -65,6 +75,7 @@ export const UpdateRecord = () => {
     console.warn( vet, healthConcerns, vaccinations);
     const userId= JSON.parse(localStorage.getItem('user'))._id
     const petId= JSON.parse(localStorage.getItem('pet'))._id
+    
 try {
       let result = await fetch(`http://localhost:5000/api/petrecords/${params.recordId}`, {
         method: "PUT",
@@ -81,12 +92,13 @@ try {
 
     if (result){
         alert("Pet has been updated!");
-        navigate("/mypets") }
+        navigate("/petrecords") }
     
     } catch (error) {
         alert('oops, something went wrong. Reload page and try again')
         setError(error.response.data.message);
-      } setLoading(false)};
+        setLoading(false)};
+      } 
             
 
 
@@ -145,7 +157,7 @@ try {
               id="formFileMultiple" 
               multiple
               accept ='application/pdf, image/png, image/jpeg'
-              onChange= {(e) => upload(e.target.files[0])}/>
+              onClick= {(e) => upload(e.target.files[0])}/>
            
 
             <Form.Label for="formFileMultiple" className="form-label "></Form.Label><br/>

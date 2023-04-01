@@ -54,6 +54,7 @@ const getDetails = async (e) => {
     const token = JSON.parse(localStorage.getItem('user')).token;
    
 try {
+  setLoading(true)
       let result = await fetch(`http://localhost:5000/api/petrecords/add/${params.petid}`, {
         method: "POST",
         body: JSON.stringify({ petName, vet: [{name, contact}], healthConcerns:[{allergies, medication, exisitingConditions, history }], vaccinations, userId, petId, recordImage}),
@@ -63,11 +64,13 @@ try {
         }
       });
       setLoading(true)
+      setSuccess ("Added successful")
       result = await result.json();
       localStorage.setItem("record", JSON.stringify(result))
       localStorage.setItem("pet", JSON.stringify(result))
       console.log(result);
-      navigate("/mypets")
+      
+      navigate("/petrecords")
      
     } catch (error) {   
         setError(error.response.data.message);
@@ -118,7 +121,7 @@ try {
           <Form className="mb-4">
             <Row className="mb-3 mt-5">
               {loading && <Loading />}
-              {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
+              {success && <ErrorMessage variant="success">Record added!</ErrorMessage>}
               <Form.Group as={Col} controlId="formGridBreed">
                 <h5>Pet </h5>
                 <Form.Label>Name</Form.Label>

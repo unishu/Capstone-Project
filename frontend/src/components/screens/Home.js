@@ -77,7 +77,9 @@ const Home = () => {
                 <Card>
                   <Card.Img variant="top" src={lizard} />
                     <Card.Body>
-                      <Card.Title>Some text here</Card.Title>
+                      <Card.Title>Share</Card.Title>
+                      With all your pet information stored in one handy place, share with vets, carers etc
+                      to help ehance care for our pet.
                         <Card.Text>
                
                         </Card.Text>

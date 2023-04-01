@@ -27,10 +27,8 @@ const ProfileScreen = () => {
     const [message, setMessage] = useState(null);
   
 
-    
-
     const params = useParams();
-   const navigate = useNavigate();
+    const navigate = useNavigate();
 
 
 
@@ -50,17 +48,9 @@ const ProfileScreen = () => {
     const user2= JSON.parse(localStorage.getItem('user'))
 
 
-    //console.log({recordId});
-    console.log({user});
-    console.log({user2});
-  
-
-
-    //setLoading(false)
     let result = await fetch(`http://localhost:5000/api/users/${user}`);; 
     result = await result.json();
     localStorage.setItem("user", JSON.stringify(result)) 
-    console.warn({result}); 
 
     setName(result.name);
     setEmail(result.email);
@@ -75,8 +65,6 @@ const ProfileScreen = () => {
     console.warn(name, email, address);
     const userId= JSON.parse(localStorage.getItem('user'))._id
     const token= JSON.parse(localStorage.getItem('user')).token
-    console.log(token)
-
 
     if (password !== confirmPassword) {
       setMessage('Passwords do not match');
@@ -84,15 +72,15 @@ const ProfileScreen = () => {
        } else {
         setMessage(null);
 
-        try {
-        
-    let result =  await fetch(`http://localhost:5000/api/users/update/${userId}`, {
-      method: "PUT",
-      body: JSON.stringify({name, email, address, password, pic}),
-      headers: {
+    try {
+          setLoading(true)
+      let result =  await fetch(`http://localhost:5000/api/users/update/${userId}`, {
+        method: "PUT",
+        body: JSON.stringify({name, email, address, password, pic}),
+        headers: {
 
-        "Content-Type": "application/json",
-        'Authorization': `Bearer ${token}`,
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`,
       }
     });
     setLoading(true)
@@ -100,7 +88,7 @@ const ProfileScreen = () => {
     result = await result.json();
 
     localStorage.setItem("user", JSON.stringify(result)) 
-    console.log(result);
+   
    
       alert("Your Profile has been updated!");
       setLoading(false)
@@ -139,8 +127,6 @@ const ProfileScreen = () => {
     
   const submitHandler = (e) => {
     e.preventDefault();
-
-
   }
 
 

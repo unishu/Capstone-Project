@@ -109,7 +109,6 @@ const deleteUser = (req, res) => {
 
 
 const updateUser = asyncHandler( async (req, res) => {
-  
   const user = await models.Users.findById( req.user._id);  
 
   if (user) {

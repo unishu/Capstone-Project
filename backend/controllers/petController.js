@@ -73,7 +73,7 @@ const getPets = asyncHandler(
 
     });
 
-    //delete pet
+    //delete
     const deletePet = asyncHandler( async (req, res) => {
         const pet = await models.Pets.findById(req.params.id);
         if (pet.userId.toString() !== req.user._id.toString()) {

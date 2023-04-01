@@ -2,7 +2,6 @@ import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import Footer from '../footer/Footer'
 import boston from  '../../assets/boston.png'
-import { fontStyle } from '@mui/system'
 
 const AboutUs = () => {
   return (

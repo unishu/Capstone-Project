@@ -6,6 +6,7 @@ import { Button, Card, Badge, Accordion } from 'react-bootstrap'
 import MainScreen from '../screens/MainScreen'
 import Sidebar from '../Sidebar'
 import Footer from  '../footer/Footer'
+import Loading from '../services/Loading'
 import "../screens/profileScreen/ProfileScreen.css"
 import TaskApp from '../taskApp/TaskApp'
 
@@ -13,6 +14,7 @@ import TaskApp from '../taskApp/TaskApp'
 const MyPets = () => {
 
     const [pets, setPets] = useState([]);
+    const [loading, setLoading] = useState(false);
     
     useEffect(() => {
         
@@ -49,13 +51,11 @@ const fetchPets = async () => {
 
 //deleting pet
 const deletePet = async (id) => {
-    console.log(id)
     const userInfo = JSON.parse(localStorage.getItem('user')).token;
-    console.log(userInfo)
         if (!window.confirm("Are you sure?")) {  
             return false;  
     } else {   
-        
+        setLoading(true)
         let result = await fetch(`http://localhost:5000/api/pets/${id}`, {
             method: "DELETE",
             headers: {
@@ -80,7 +80,7 @@ const deletePet = async (id) => {
         console.log({key: key})
         const userInfo = JSON.parse(localStorage.getItem('user')).token;
         if (key){
-    
+            setLoading(true)
         let result = await fetch(`http://localhost:5000/api/pets/search/${key}`, {
             method: "GET",
             headers: {
@@ -139,15 +139,15 @@ const deletePet = async (id) => {
                 
                                         < Row className="blockquote mb-0">
                                         <p><Col 
-                                        className="flex" sm= {12} md={12} lg={12}>{' '
-                                        }<img className="petpic mt-2 inline-flexbox w-50" src={pet.pic} />
+                                        className="flex" sm= {12} md={12} lg={12}>{' '}
+                                        <img className="petpic mt-2 inline-flexbox w-50" src={pet.pic} />
                                             </Col><br/>
-                                            Species: {" "} {pet.species}<br/>
-                                            Breed: {" "} {pet.breed}<br/>
-                                            Sex: {" "} {pet.sex}<br/>
-                                            Birthday: {" "} {pet.birthday}<br/>
-                                            Weight: {" "} {pet.weight}<br/>
-                                            RegistrationId: {" "} {pet.registrationId}<br/>
+                                            <b>Species: </b>{" "} {" "} {pet.species}<br/>
+                                            <b>Breed:</b> {" "} {" "}  {pet.breed}<br/>
+                                            <b>Sex: </b>{" "} {" "} {pet.sex}<br/>
+                                            <b>Birthday:</b> {" "} {" "} {pet.birthday}<br/>
+                                            <b>Weight:</b> {" "} {" "} {pet.weight}<br/>
+                                            <b>RegistrationId:</b> {" "} {" "} {pet.registrationId}<br/>
                                         </p>
 
                                             <Button 
@@ -156,6 +156,11 @@ const deletePet = async (id) => {
                                             href={`/petrecord/new-record/${pet._id}`}> 
                                             Add Record
                                             </Button> {' '}
+
+                                            <Button variant= "info" className='mb-4' 
+                    href= {`/petrecord/${pet._id}`} //{`/petrecords/${pet.name}/records`}
+                    > View Records</Button> {' '}
+
 
                                             <Button 
                                             variant = "success" 

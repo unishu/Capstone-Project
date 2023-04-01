@@ -8,7 +8,7 @@ const ContactUs = () => {
   return (
     <div>
         <div > 
-          <Container> 
+          <Container className='min-vh-100'> 
             <div style={{fontSize: "100px", marginTop: "100px", textAlign: "center"}}>Work in progress</div>
                 <p style={{textAlign: "center"}}>This page is currently at puberty</p>
                 <img src={loadingPets} style={{marginLeft: "auto", marginRight: "auto", display: "block"}}/>

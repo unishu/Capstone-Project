@@ -38,6 +38,7 @@ export const NewPet = () => {
       console.warn({userAddress})
 
 try {
+      setLoading(true)
       let result = await fetch("http://localhost:5000/api/pets/register", {
         method: "POST",
         body: JSON.stringify({name, pic, species, breed, birthday, sex, weight, registrationId, userId, userAddress }),
@@ -46,12 +47,9 @@ try {
           'Authorization': `Bearer ${token}`,
         }
       });
-      setLoading(true)
       setSuccess ("Added new pet")
       result = await result.json();
-      console.log(result);
       localStorage.setItem("pet", JSON.stringify(result))
-  
       alert("Pet has been added!")    
       setLoading(false)
       navigate("/mypets")
@@ -99,7 +97,7 @@ try {
               {loading && <Loading />}
               {success && (
                 <ErrorMessage variant="success">
-                  Added Successfully
+                  Added new pet!
                 </ErrorMessage>
               )}
             <Row className="mb-3">
